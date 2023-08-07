@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 function App () {
@@ -14,18 +14,26 @@ function App () {
     setCount(count + 1)
   }
 
+  useEffect(() => {
+    getAdvice()
+  }, [])
+
   return (
     <>
       <div className='card'>
 
-        <p>
-          You have got {count}
-        </p>
+        <Message count={count} />
         <button onClick={getAdvice}>Advice</button>
-        <div><h1>{data}</h1></div>
+        <div>
+          <h1>{data}</h1>
+        </div>
       </div>
     </>
   )
+}
+
+function Message (props) {
+  return <p>You have got {props.count}</p>
 }
 
 export default App
